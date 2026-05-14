@@ -1,0 +1,325 @@
+html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Yung Lean · стеклянный сайт</title>
+    <!-- Подключаем аккуратный шрифт для "стеклянного" настроения -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0b0c0e 0%, #1a1e24 100%);
+            min-height: 100vh;
+            color: #e8eaed;
+            line-height: 1.5;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            /* лёгкая текстурная подложка для глубины стекла */
+            background-image: 
+                radial-gradient(ellipse at 20% 50%, rgba(72, 164, 245, 0.08) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 20%, rgba(180, 130, 255, 0.06) 0%, transparent 55%);
+        }
+
+        /* основной стеклянный контейнер */
+        .glass-site {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(20, 25, 30, 0.45);
+            backdrop-filter: blur(18px) saturate(140%);
+            -webkit-backdrop-filter: blur(18px) saturate(140%);
+            border-radius: 3.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(255, 255, 255, 0.04);
+            overflow: hidden;
+            padding: 2.8rem 2.5rem;
+        }
+
+        /* заголовок */
+        .hero {
+            text-align: center;
+            margin-bottom: 2.8rem;
+        }
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 0%, #b8d0e7 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+        }
+        .hero p {
+            color: #9aa4b2;
+            font-size: 1.15rem;
+            margin-top: 0.2rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* навигация – тоже стеклянная */
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 2.8rem;
+        }
+        .nav-links a {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 3rem;
+            padding: 0.7rem 2rem;
+            color: #dce3eb;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.25s ease;
+            letter-spacing: 0.3px;
+        }
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.16);
+            border-color: rgba(255, 255, 255, 0.35);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* общие стеклянные карточки */
+        .glass-card {
+            background: rgba(15, 20, 25, 0.5);
+            backdrop-filter: blur(14px) saturate(140%);
+            -webkit-backdrop-filter: blur(14px) saturate(140%);
+            border-radius: 2.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem 2.2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #eaf0f8;
+            border-left: 4px solid #5f9ef0;
+            padding-left: 1.2rem;
+        }
+
+        h3 {
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin: 1.4rem 0 0.7rem;
+            color: #cddbe9;
+        }
+
+        /* сетка для видео */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.2rem;
+        }
+        .video-wrapper {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 1.8rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s;
+        }
+        .video-wrapper:hover {
+            transform: scale(1.01);
+        }
+        .video-wrapper iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: none;
+            display: block;
+        }
+        .video-caption {
+            padding: 0.7rem 1rem;
+            font-size: 0.9rem;
+            color: #b0bed0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* блок последнего клипа */
+        .highlight-badge {
+            display: inline-block;
+            background: #d94f4f;
+            color: white;
+            border-radius: 2rem;
+            padding: 0.3rem 1.3rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            margin-left: 0.8rem;
+            vertical-align: middle;
+        }
+
+        .storm-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        .storm-text {
+            flex: 2;
+            min-width: 280px;
+        }
+        .storm-video {
+            flex: 1.5;
+            min-width: 280px;
+        }
+
+        hr {
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+            margin: 1.8rem 0 1.2rem;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #667080;
+            font-size: 0.85rem;
+            margin-top: 1.8rem;
+        }
+
+        @media (max-width: 600px) {
+            .glass-site {
+                padding: 1.8rem 1.2rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-site">
+        <div class="hero">
+            <h1>Yung Lean</h1>
+            <p>Jonatan Leandoer Håstad · Стокгольм, Швеция</p>
+        </div>
+
+        <!-- Стеклянная навигация – якоря на разделы -->
+        <div class="nav-links">
+            <a href="#bio">Биография</a>
+            <a href="#music">Дискография</a>
+            <a href="#videos">Клипы</a>
+            <a href="#storm">Последний клип</a>
+        </div>
+
+        <!-- БИОГРАФИЯ -->
+        <section id="bio" class="glass-card">
+            <h2>📜 Биография</h2>
+            <p><strong>Yung Lean</strong> (настоящее имя Юнатан Арон Леандоер Хостад) — шведский рэпер, певец и автор песен, родился 18 июля 1996 года в Стокгольме. Детство провёл в Минске (Беларусь) и Вьетнаме, что повлияло на его мультикультурное восприятие. В 2012 году вместе с продюсерами <strong>Yung Sherman</strong> и <strong>Yung Gud</strong> основал объединение <strong>Sad Boys</strong>.</p>
+            <p>Широкую известность получил в 2013 году после вирусного успеха клипа <strong>«Ginseng Strip 2002»</strong>, который стал одним из символов зарождающейся cloud‑rap сцены. В том же году вышел дебютный микстейп <em>Unknown Death 2002</em>, а год спустя — первый студийный альбом <em>Unknown Memory</em>.</p>
+            <p>С тех пор Yung Lean выпустил ряд влиятельных работ: <em>Warlord</em> (2016), <em>Stranger</em> (2017), <em>Starz</em> (2020), а также альбомы под альтер-эго <strong>jonatan leandoer96</strong>. В 2025 году представил пластинку <em>Jonatan</em>, знаменующую новый, более зрелый этап. Артист известен меланхоличным звучанием, экспериментами с поп-культурой и откровенными текстами.</p>
+        </section>
+
+        <!-- ДИСКОГРАФИЯ (кратко) -->
+        <section id="music" class="glass-card">
+            <h2>💿 Избранная дискография</h2>
+            <ul style="columns:2; -webkit-columns:2; column-gap:2rem; list-style: none; padding-left: 0;">
+                <li>🌫️ Unknown Death 2002 (2013)</li>
+                <li>🏯 Unknown Memory (2014)</li>
+                <li>⚔️ Warlord (2016)</li>
+                <li>🌌 Stranger (2017)</li>
+                <li>🍂 Poison Ivy (2018)</li>
+                <li>⭐ Starz (2020)</li>
+                <li>💧 Stardust (2022)</li>
+                <li>🕊️ Jonatan (2025)</li>
+            </ul>
+            <p style="margin-top:1rem; color:#b0bed0;">Также выпускает музыку как <strong>jonatan leandoer96</strong> (инди-рок/неофолк) и участвует в проекте <strong>Död Mark</strong>.</p>
+        </section>
+
+        <!-- КЛИПЫ -->
+        <section id="videos" class="glass-card">
+            <h2>🎬 Клипы</h2>
+            <div class="video-grid">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/vrQWhFysPKY" title="Ginseng Strip 2002" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-caption">Ginseng Strip 2002 (первый вирусный хит)</div>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/tmgkt9jdjTU" title="Kyoto" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-caption">Kyoto (2013, более 60 млн просмотров)</div>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/VamfnrmmAow" title="Violence + Pikachu" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-caption">Violence + Pikachu (2020, двойное видео)</div>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/OLVeCAWV9-M" title="Boylife in EU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-caption">Boylife in EU (2020, сингл с альбома Starz)</div>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/9jDiAcqbO0c" title="Hoover" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-caption">Hoover (2015, gritty dirt bike эстетика)</div>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/qjYkr78anZs" title="Forever Yung" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-caption">Forever Yung (2025, похороны старого образа)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ПОСЛЕДНИЙ КЛИП: STORM -->
+        <section id="storm" class="glass-card">
+            <h2>🌪️ Последний клип <span class="highlight-badge">NEW 2026</span></h2>
+            <div class="storm-details">
+                <div class="storm-text">
+                    <h3 style="margin-top:0;">GENER8ION – STORM (при участии Yung Lean)</h3>
+                    <p>Вышедший <strong>24 апреля 2026 года</strong>, «STORM» — это совместная работа с аудио-визуальным проектом <strong>GENER8ION</strong> (продюсер Surkin и режиссёр Ромен Гаврас). Клип представляет собой короткометражный фильм длиной более семи минут.</p>
+                    <p><strong>Задумка и атмосфера:</strong> Действие разворачивается в 2034 году в элитной британской школе-интернате для мальчиков. Yung Lean играет роль жестокого хулигана, который держит в страхе всю школу. Первая часть видео показывает хаос, подростковую агрессию и разрушение, отсылая к духу «Повелителя мух» и антиутопиям. Вторая часть (<em>STORM II</em>) резко меняет тон: школьники в строгих костюмах исполняют завораживающий, почти ритуальный танец, поставленный хореографом Дэмьеном Жале. Этот контраст создаёт гипнотический эффект и превращает клип в визуальную симфонию.</p>
+                    <p><strong>Смысл:</strong> По словам создателей, «STORM» исследует групповую динамику, токсичную маскулинность и хрупкость контроля. Это не просто музыкальное видео, а полноценное кинематографическое высказывание, которое уже называют одним из лучших клипов года.</p>
+                    <p style="margin-top:0.8rem; font-size:0.9rem; color:#9aaec9;">Режиссёр: Ромен Гаврас · Хореография: Damien Jalet · Съёмки проходили в бельгийской школе Cardinal Mercier College.</p>
+                </div>
+                <div class="storm-video">
+                    <div class="video-wrapper" style="border-radius:1.5rem;">
+                        <iframe src="https://www.youtube.com/embed/x6_mbnsh6VU" title="GENER8ION - STORM starring Yung Lean" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <p style="text-align:center; margin-top:0.5rem; color:#b0bed0; font-size:0.85rem;">STORM I & II · GENER8ION / Yung Lean</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+        <div class="footer-note">
+            Сайт выполнен в стеклянном стиле · Все права на музыку и видео принадлежат Yung Lean и правообладателям.
+        </div>
+    </div>
+
+    <!-- Плавный скролл для якорных ссылок -->
+    <script>
+        (function() {
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId && targetId.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
